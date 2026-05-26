@@ -73,8 +73,8 @@ function ReactionsBar({
           className={`flex items-center gap-1 px-2.5 py-0.5 rounded-full border text-sm
             transition-colors
             ${mine
-              ? "bg-surface border-accent/15 text-accent"
-              : "bg-background border-border hover:bg-muted"
+              ? "bg-surface  text-accent"
+              : "bg-background  hover:bg-muted"
             }`}
         >
           <span>{emoji}</span>
