@@ -3,31 +3,11 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import {
   Avatar,
   Button,
-  Card,
-  Chip,
   Description,
-  Dropdown,
-  Input,
-  Label,
   ScrollShadow,
   SearchField,
-  Separator,
-  TextField,
 } from "@heroui/react";
 import {
-  CornerDownLeft,
-  CornerDownRight,
-  Ellipsis,
-  EllipsisVertical,
-  File,
-  Mic,
-  Paperclip,
-  Pencil,
-  Phone,
-  Share,
-  SmilePlus,
-  Trash,
-  Video,
 } from "lucide-react";
 import { useState } from "react";
 import ChatCard from "@/components/chatCard";

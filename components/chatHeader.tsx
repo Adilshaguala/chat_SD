@@ -2,34 +2,9 @@
 import {
     Avatar,
     Button,
-    Card,
-    Chip,
-    Description,
-    Dropdown,
-    Input,
-    Label,
-    ScrollShadow,
-    SearchField,
-    Separator,
-    TextField,
 } from "@heroui/react";
 
-import {
-    Clipboard,
-    CornerDownLeft,
-    CornerDownRight,
-    Ellipsis,
-    EllipsisVertical,
-    File,
-    Mic,
-    Paperclip,
-    Pencil,
-    Phone,
-    Share,
-    SmilePlus,
-    Trash,
-    Video,
-} from "lucide-react";
+import { EllipsisVertical, Phone, Video } from "lucide-react";
 
 export default function ChatHeader() {
     return (
