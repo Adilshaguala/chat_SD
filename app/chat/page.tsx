@@ -12,6 +12,7 @@ import { useState } from "react";
 
 
 const currentUserId = "user-001";
+
 const exampleMessage: MessageData = {
   id: "msg-001",
   content: "Olá! Viste o documento que enviei ontem?",
@@ -169,10 +170,14 @@ export default function Chat() {
               type={selectedConversation.type}
               name={selectedConversation.name}
               image_url={selectedConversation.image_url}
-              fallback={selectedConversation.avatarFallback}
+              fallback={selectedConversation.avatarFallback}  // ← avatarFallback → fallback
               is_online={selectedConversation.type === "private" ? selectedConversation.is_online : undefined}
+              participant1={selectedConversation.participant1}
+              participant2={selectedConversation.participant2}
+              participant3={selectedConversation.participant3}
+              participantsCount={selectedConversation.participantsCount}
             />
-            <ChatMain messages={[exampleMessage, sentMessage, deletedMessage]} currentUserId={currentUserId} />
+            <ChatMain messages={selectedConversation.messages} currentUserId={currentUserId} />
             <ChatInputField />
           </>
         ) : (

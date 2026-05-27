@@ -1,5 +1,5 @@
 "use client"
-import { Conversation, ConversationHandlers } from "@/lib/props";
+import { Conversation, ConversationHandlers, ConversationHeaderProps } from "@/lib/props";
 import {
     Avatar,
     Button,
@@ -26,7 +26,7 @@ export default function ChatHeader({
     type, name, image_url, fallback, is_online,
     participant1, participant2, participant3, participantsCount,
     onCall, onVideoCall, onMenu
-}: Conversation & ConversationHandlers) {
+}: ConversationHeaderProps & ConversationHandlers) {
     return (
         <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">

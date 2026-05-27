@@ -80,7 +80,6 @@ export interface Conversation {
     type: "group" | "private";
     name: string;
     image_url?: string;
-    fallback: string;
     avatarFallback: string;
     is_online?: boolean;
     participant1?: string;
@@ -91,6 +90,21 @@ export interface Conversation {
     time: string;
     unreadCount?: number;
     messages: MessageData[];
+}
+
+export interface ConversationHeaderProps {
+    type?: "group" | "private";
+    name: string;
+    image_url?: string;
+    fallback: string;
+    is_online?: boolean;
+    participant1?: string;
+    participant2?: string;
+    participant3?: string;
+    participantsCount?: number;
+    onCall?: () => void;
+    onVideoCall?: () => void;
+    onMenu?: () => void;
 }
 
 export interface ConversationHandlers {
