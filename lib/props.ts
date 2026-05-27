@@ -1,4 +1,5 @@
-interface ChatCardProps {
+export interface ChatCardProps {
+    id: string;
     isSelected?: boolean;
     name: string;
     avatarSrc?: string;
@@ -6,9 +7,8 @@ interface ChatCardProps {
     lastMessage: string;
     time: string;
     unreadCount?: number;
+    onPress?: () => void;
 }
-
-
 
 export interface Profile {
     id: string;
@@ -67,4 +67,34 @@ export interface MessageProps {
     onEdit?: (messageId: string, content: string) => void;
     onDelete?: (messageId: string) => void;
     onForward?: (messageId: string) => void;
+}
+
+export interface ChatHomeProps {
+    selectedConversationId: string | null;
+    onSelectConversation: (id: string) => void;
+}
+
+
+export interface Conversation {
+    id: string;
+    type: "group" | "private";
+    name: string;
+    image_url?: string;
+    fallback: string;
+    avatarFallback: string;
+    is_online?: boolean;
+    participant1?: string;
+    participant2?: string;
+    participant3?: string;
+    participantsCount?: number;
+    lastMessage: string;
+    time: string;
+    unreadCount?: number;
+    messages: MessageData[];
+}
+
+export interface ConversationHandlers {
+    onCall?: () => void;
+    onVideoCall?: () => void;
+    onMenu?: () => void;
 }

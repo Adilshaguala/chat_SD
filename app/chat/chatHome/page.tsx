@@ -1,98 +1,56 @@
 "use client";
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  Avatar,
-  Button,
-  Description,
-  ScrollShadow,
-  SearchField,
-} from "@heroui/react";
-import {
-} from "lucide-react";
+import { Avatar, ScrollShadow, SearchField } from "@heroui/react";
 import { useState } from "react";
 import ChatCard from "@/components/chatCard";
+import { ChatCardProps, ChatHomeProps } from "@/lib/props";
 
-export default function ChatHome() {
+export default function ChatHome({ 
+  selectedConversationId, 
+  onSelectConversation, 
+  conversations 
+}: ChatHomeProps & { conversations: ChatCardProps[] }) {
   const [value, setValue] = useState("");
 
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="flex flex-col h-full">
+      <div className="flex justify-between items-center">
         <h1>Conversas</h1>
         <ThemeSwitch />
         <Avatar size="sm">
-          <Avatar.Image
-            alt="John Doe"
-            src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-          />
+          <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
           <Avatar.Fallback>JD</Avatar.Fallback>
         </Avatar>
       </div>
-      <div>
-        <div className="flex flex-col gap-2">
-          <SearchField
-            variant="secondary"
-            name="search"
-            value={value}
-            onChange={setValue}
-          >
-            <SearchField.Group>
-              <SearchField.SearchIcon />
-              <SearchField.Input
-                className="w-[280px]"
-                placeholder="Procurar..."
+
+      <SearchField variant="secondary" name="search" value={value} onChange={setValue}>
+        <SearchField.Group>
+          <SearchField.SearchIcon />
+          <SearchField.Input className="w-[280px]" placeholder="Procurar..." />
+          <SearchField.ClearButton />
+        </SearchField.Group>
+      </SearchField>
+
+      <ScrollShadow className="flex-1 min-h-0" hideScrollBar>
+        <div className="my-4 flex flex-col gap-1">
+          {conversations.length > 0 ? (
+            conversations.map((conversation) => (
+              <ChatCard
+                key={conversation.id}
+                id={conversation.id}
+                name={conversation.name}
+                avatarSrc={conversation.avatarSrc}
+                avatarFallback={conversation.avatarFallback}
+                lastMessage={conversation.lastMessage}
+                time={conversation.time}
+                unreadCount={conversation.unreadCount}
+                isSelected={selectedConversationId === conversation.id}
+                onPress={() => onSelectConversation(conversation.id!)}
               />
-              <SearchField.ClearButton />
-            </SearchField.Group>
-            <Description>Pesquise por conversas, ficheiros...</Description>
-          </SearchField>
-          <div className="flex gap-2">
-            <Button variant="tertiary" onPress={() => setValue("")}>
-              Clear
-            </Button>
-            <Button
-              variant="tertiary"
-              onPress={() => setValue("example query")}
-            >
-              Set example
-            </Button>
-          </div>
-        </div>
-      </div>
-      <ScrollShadow className="flex-1 min-h-0">
-        <div className="my-4">
-          <ChatCard
-            unreadCount={9}
-            isSelected={true}
-            name="Adilson"
-            avatarFallback="AD"
-            avatarSrc="https://img.heroui.chat/image/avatar?w=400&h=400&u=2"
-            lastMessage="Onde estas, estou na faculdade"
-            time="Ontem"
-          />
-          <ChatCard
-            isSelected={false}
-            name="Adilson"
-            avatarFallback="AD"
-            avatarSrc="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-            lastMessage="Onde estas, estou na faculdade"
-            time="Ontem"
-          />
-          <ChatCard
-            isSelected={false}
-            name="Adilson"
-            avatarFallback="AD"
-            lastMessage="Onde estas, estou na faculdade"
-            time="Ontem"
-          />
-          <ChatCard
-            unreadCount={9}
-            isSelected={false}
-            name="Adilson"
-            avatarFallback="AD"
-            lastMessage="Onde estas, estou na faculdade"
-            time="Ontem"
-          />
+            ))
+          ) : (
+            <p className="text-sm text-muted text-center mt-4">Nenhuma conversa ainda</p>
+          )}
         </div>
       </ScrollShadow>
     </div>
