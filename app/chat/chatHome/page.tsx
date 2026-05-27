@@ -8,8 +8,8 @@ import { ChatCardProps, ChatHomeProps } from "@/lib/props";
 export default function ChatHome({ 
   selectedConversationId, 
   onSelectConversation, 
-  conversations 
-}: ChatHomeProps & { conversations: ChatCardProps[] }) {
+  conversations = [] 
+}: ChatHomeProps & { conversations?: ChatCardProps[] }) {
   const [value, setValue] = useState("");
 
   return (
@@ -28,7 +28,7 @@ export default function ChatHome({
 
       <ScrollShadow className="flex-1 min-h-0" hideScrollBar>
         <div className="my-4 flex flex-col gap-1">
-          {conversations.length > 0 ? (
+          {conversations && conversations.length > 0 ? (
             conversations.map((conversation) => (
               <ChatCard
                 key={conversation.id}
