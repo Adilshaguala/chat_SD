@@ -15,12 +15,7 @@ export default function ChatHome({
   return (
     <div className="flex flex-col h-full">
       <div className="flex justify-between items-center">
-        <h1>Conversas</h1>
         <ThemeSwitch />
-        <Avatar size="sm">
-          <Avatar.Image alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
-          <Avatar.Fallback>JD</Avatar.Fallback>
-        </Avatar>
       </div>
 
       <SearchField variant="secondary" name="search" value={value} onChange={setValue}>
