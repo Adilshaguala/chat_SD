@@ -124,7 +124,7 @@ export default function Login() {
             <p className="text-sm text-zinc-400">
               Não tens conta?{' '}
               <Link
-                href="/signup"
+                href="/auth/signup"
                 className="
                   font-medium
                   text-green-400

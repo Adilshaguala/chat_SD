@@ -25,6 +25,25 @@ export async function GET(request: NextRequest) {
     );
 
     await supabase.auth.exchangeCodeForSession(code);
+
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (!userError && user) {
+      const metadata = user.user_metadata as Record<string, any> | undefined;
+      const name =
+        metadata?.name ||
+        (user.email ? user.email.split("@")[0] : `user-${user.id.slice(0, 8)}`);
+
+      await supabase.from("profiles").upsert({
+        id: user.id,
+        name,
+        email: user.email ?? "",
+        avatar_url: metadata?.avatar_url ?? null,
+      });
+    }
   }
 
   // Caso ja foi logado!
